@@ -239,6 +239,16 @@
   /* global search */
   .search-btn{display:flex; align-items:center; gap:6px; font:inherit; font-size:.84rem; font-weight:700; padding:6px 13px; min-height:34px; border-radius:999px; border:1.5px solid var(--brand); background:var(--brand); color:#fff; cursor:pointer; white-space:nowrap; flex:0 0 auto; box-shadow:0 2px 8px rgba(192,57,43,.28);}
   .search-btn:hover{filter:brightness(1.08);}
+  .ask-btn{display:flex; align-items:center; gap:6px; font:inherit; font-size:.84rem; font-weight:700; padding:6px 13px; min-height:34px; border-radius:999px; border:1.5px solid var(--blue); background:var(--blue); color:#fff; cursor:pointer; white-space:nowrap; flex:0 0 auto; box-shadow:0 2px 8px rgba(47,111,176,.28);}
+  .ask-btn:hover{filter:brightness(1.08);}
+  .ask{position:fixed; inset:0; z-index:100; background:rgba(23,26,36,.45); display:flex; align-items:flex-end; justify-content:center;}
+  .ask[hidden]{display:none;}
+  .ask-panel{width:100%; max-width:640px; background:var(--paper); border-radius:16px 16px 0 0; padding:14px 16px calc(16px + env(safe-area-inset-bottom)); box-shadow:0 -10px 40px rgba(0,0,0,.25);}
+  .ask-top{display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:8px;}
+  .ask-ctx{font-size:.84rem; color:var(--ink-soft); margin-bottom:8px;}
+  .ask textarea{width:100%; font:inherit; font-size:1rem; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); resize:vertical;}
+  .ask-actions{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
+  .ask-hint{font-size:.78rem; color:var(--ink-soft); margin:8px 0 0;}
   .search-btn svg{display:block; flex:0 0 auto;}
   .search-btn kbd{font-family:"JetBrains Mono",monospace; font-size:.66rem; background:rgba(255,255,255,.18); border-radius:4px; padding:0 5px;}
   .hero-search{display:flex; align-items:center; gap:10px; width:100%; max-width:640px; margin:18px 0 4px; padding:13px 16px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); box-shadow:var(--shadow); font:inherit; font-size:1rem; color:var(--ink-soft); cursor:text; text-align:left;}
@@ -278,6 +288,7 @@
   <div class="bar-in">
     <span class="brand">telc B1<span class="dot">.</span></span>
     <button type="button" class="search-btn" data-open-search aria-label="Search the whole guide"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.6"/><path d="M15.5 15.5 21 21" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg> <span>Search</span> <kbd>/</kbd></button>
+    <button type="button" class="ask-btn" data-ask aria-label="Ask a question about what you are reading">💬 <span>Ask</span></button>
     <nav class="navlinks">
       <a href="#exam">Exam</a>
       <a href="#plan">Plan</a>
@@ -327,6 +338,7 @@
     </div>
     <div class="tip warn"><b>How to use this guide:</b> don't read it like a book. Follow the <a href="#plan">12-week plan</a> — it tells you which section to study each week. The <b>Writing</b> and <b>Speaking</b> sections are the biggest point-winners: they run on fixed phrases you can memorise even at A2 level.</div>
     <div class="tip go"><b>New (September 2026):</b> forgot an old rule? Open the <a href="#review">A1 → A2 grammar review</a> (36 short lessons with quick checks, a diagnostic test and a glossary of grammar words). Confused by Partizip II, hatte / habe, hat / ist, wird / wurde / würde or modal verbs? Open the <a href="#verbformen">Verb forms centre</a>, which has a verb lookup for 299 verbs and a practice gym. Want the whole language in <b>one</b> picture instead of A1/A2/B1 pieces? Open <a href="#alles">All rules</a> — every rule from A1 to B1 on a single page. Looking for anything else? Press 🔎 <b>Search</b>.</div>
+    <div class="tip go"><b>New (October 2026):</b> the <a href="#genitiv">Genitiv lesson</a> (des / der, the four prepositions, letter phrases and a 10-item quick check) and the 💬 <b>Ask</b> button in the top bar: tap it, type your doubt, and Claude explains it on your phone, with the section you are reading attached.</div>
   </section>
 <section class="section" id="exam">
 <div class="sec-head"><span class="sec-tag">Exam</span><h2>The exam, part by part</h2><span class="roi hi">READ THIS FIRST</span></div>
@@ -6602,12 +6614,12 @@ When you write, always check: do I mean "was / became" (wurde) or "would" (würd
 <tr><td><span class="case N">N</span> Nominativ</td><td>the subject – who does the action</td><td class="de">Wer? Was?</td></tr>
 <tr><td><span class="case A">A</span> Akkusativ</td><td>the direct object – the thing the action happens to</td><td class="de">Wen? Was?</td></tr>
 <tr><td><span class="case D">D</span> Dativ</td><td>the receiver – to/for whom; also after Dativ prepositions</td><td class="de">Wem?</td></tr>
-<tr><td><span class="case G">G</span> Genitiv</td><td>possession ("of the …") – rare at B1, mostly after wegen, während, trotz</td><td class="de">Wessen?</td></tr>
+<tr><td><span class="case G">G</span> Genitiv</td><td>possession ("of the …") – after wegen, trotz, während, statt; full lesson in <a href="#genitiv">card 1b</a></td><td class="de">Wessen?</td></tr>
 </tbody></table></div>
 <div class="ex"><span class="de"><mark>Der Mann</mark> liest eine Zeitung.</span><span class="tr">The man is reading a newspaper. (der Mann = subject = Nominativ)</span></div>
 <div class="ex"><span class="de">Ich sehe <mark>den Mann</mark>.</span><span class="tr">I see the man. (the man "receives" the seeing = Akkusativ)</span></div>
 <div class="ex"><span class="de">Ich helfe <mark>dem Mann</mark>.</span><span class="tr">I help the man. (helfen always takes Dativ)</span></div>
-<div class="ex"><span class="de">Das ist das Auto <mark>des Mannes</mark>.</span><span class="tr">That is the man's car. (Genitiv – rare, you mostly just need to recognise it)</span></div>
+<div class="ex"><span class="de">Das ist das Auto <mark>des Mannes</mark>.</span><span class="tr">That is the man's car. (Genitiv – full lesson in card 1b, just below)</span></div>
 
 <h4>Definite article: der / die / das ("the")</h4>
 <div class="tbl-scroll"><table class="t"><thead><tr><th></th><th><span class="case N">N</span></th><th><span class="case A">A</span></th><th><span class="case D">D</span></th></tr></thead><tbody>
@@ -6616,7 +6628,7 @@ When you write, always check: do I mean "was / became" (wurde) or "would" (würd
 <tr><td class="de"><span class="g n">das</span> (n)</td><td class="de">das Kind</td><td class="de">das Kind</td><td class="de">dem Kind</td></tr>
 <tr><td class="de">die (Plural)</td><td class="de">die Kinder</td><td class="de">die Kinder</td><td class="de">den Kinder<mark>n</mark></td></tr>
 </tbody></table></div>
-<div class="tip">Genitiv (rare): <b>des Mannes, der Frau, des Kindes, der Kinder</b>. Masculine and neuter nouns also get <b>-s / -es</b> at the end: des Mann<b>es</b>, des Kind<b>es</b>.</div>
+<div class="tip">Genitiv: <b>des Mannes, der Frau, des Kindes, der Kinder</b>. Masculine and neuter nouns also get <b>-s / -es</b> at the end: des Mann<b>es</b>, des Kind<b>es</b>.</div>
 <div class="esel"><span class="tag">Memory trick</span>In Akkusativ, <b>only masculine changes</b>: <b>der → den</b>. Everything else sleeps! And in <b>Dativ plural</b> the noun itself gets an extra <b>-n</b>: mit den Kinder<b>n</b>, mit den Freunde<b>n</b> (only -s plurals refuse: mit den Autos).</div>
 
 <h4>Demonstrative article: dieser / diese / dieses ("this")</h4>
@@ -6656,6 +6668,126 @@ When you write, always check: do I mean "was / became" (wurde) or "would" (würd
 <div class="ex"><span class="de">Das ist <mark>meine</mark> Schwester und das ist <mark>ihr</mark> Mann.</span><span class="tr">This is my sister and this is her husband.</span></div>
 <div class="ex"><span class="de">Ich fahre mit <mark>meinem</mark> Bruder zu <mark>unseren</mark> Eltern.</span><span class="tr">I'm driving with my brother to our parents. (Dativ endings)</span></div>
 <div class="tip warn"><b>euer</b> loses its middle <b>e</b> when it gets an ending: euer Haus, but <b>eure</b> Kinder, mit <b>eurem</b> Auto.</div>
+</div>
+
+<div class="card" id="genitiv">
+<h3>1b. Genitiv – the "of the" case <span class="mini">yes, B1 tests it</span></h3>
+<p>English says <i>the man's car</i> or <i>the car of the man</i>. German has one form for both: <span class="de">das Auto <mark>des Mannes</mark></span>. The question word is <b>Wessen?</b> (whose?). At A2 you could skip Genitiv. At B1 it turns up in three places: <b>Sprachbausteine</b> (wegen <i>des</i> or wegen <i>dem</i>?), <b>reading texts</b> (<i>die Meinung der Eltern</i>) and <b>your letter</b>, where one Genitiv phrase makes you sound B1.</p>
+<div class="ex"><span class="de"><mark>Wessen</mark> Handy ist das? – Das ist <mark>Pakhis</mark> Handy.</span><span class="tr">Whose phone is that? – That is Pakhi's phone.</span></div>
+
+<h4>Only two article forms to learn: <span class="case G">G</span> des and der</h4>
+<div class="tbl-scroll"><table class="t"><thead><tr><th>Gender</th><th>der / die / das</th><th>ein / kein / mein</th><th>Example</th></tr></thead><tbody>
+<tr><td><span class="g m">der</span> masculine</td><td class="de"><b>des</b> Mann<b>es</b></td><td class="de">eines / keines / meines</td><td class="de">das Auto <mark>meines Vaters</mark></td></tr>
+<tr><td><span class="g n">das</span> neuter</td><td class="de"><b>des</b> Kind<b>es</b></td><td class="de">eines / keines / meines</td><td class="de">die Tür <mark>des Hauses</mark></td></tr>
+<tr><td><span class="g f">die</span> feminine</td><td class="de"><b>der</b> Frau</td><td class="de">einer / keiner / meiner</td><td class="de">die Wohnung <mark>meiner Schwester</mark></td></tr>
+<tr><td><span class="g pl">die</span> plural</td><td class="de"><b>der</b> Kinder</td><td class="de">– / keiner / meiner</td><td class="de">das Haus <mark>meiner Eltern</mark></td></tr>
+</tbody></table></div>
+<div class="esel"><span class="tag">Memory trick</span><b>Girls and groups get der</b> (feminine + plural). Everything else gets <b>des</b>, and the noun itself gets an <b>-s</b>: des Vater<b>s</b>, des Kind<b>es</b>.</div>
+
+<h4>The noun ending: -s or -es (masculine and neuter only)</h4>
+<div class="tbl-scroll"><table class="t"><thead><tr><th>Rule</th><th>Examples</th></tr></thead><tbody>
+<tr><td>Most nouns: <b>-s</b></td><td class="de">des Vater<b>s</b>, des Lehrer<b>s</b>, des Auto<b>s</b>, des Wetter<b>s</b>, meines Bruder<b>s</b></td></tr>
+<tr><td>Short nouns and nouns ending in -s, -ß, -z, -x, -tz, -sch: <b>-es</b></td><td class="de">des Mann<b>es</b>, des Kind<b>es</b>, des Haus<b>es</b>, des Arzt<b>es</b>, des Tisch<b>es</b>, des Tag<b>es</b>, des Jahr<b>es</b></td></tr>
+<tr><td>Feminine and plural: <b>nothing</b></td><td class="de">der Frau, der Stadt, der Arbeit, der Kinder, der Eltern</td></tr>
+<tr><td>n-Deklination nouns (card 7): <b>-n / -en</b>, no -s</td><td class="de">des Junge<b>n</b>, des Kunde<b>n</b>, des Student<b>en</b>, des Kollege<b>n</b>, des Nachbar<b>n</b>, des Herr<b>n</b></td></tr>
+</tbody></table></div>
+
+<h4>Word order: the thing first, the owner after it</h4>
+<p>English puts the owner first (<i>my father's car</i>). German puts the thing first, then the owner: <span class="de">das Auto meines Vaters</span>.</p>
+<div class="ex"><span class="de">Das Auto <mark>meines Vaters</mark> ist alt.</span><span class="tr">My father's car is old. (the car of my father)</span></div>
+<div class="ex"><span class="de">Der Name <mark>des Lehrers</mark> ist Herr Weber.</span><span class="tr">The teacher's name is Mr Weber.</span></div>
+<div class="ex"><span class="de">Die Kinder <mark>meiner Nachbarn</mark> sind sehr laut.</span><span class="tr">My neighbours' children are very loud. (plural → meiner)</span></div>
+<div class="ex"><span class="de">Am Ende <mark>des Monats</mark> habe ich kein Geld mehr.</span><span class="tr">At the end of the month I have no money left.</span></div>
+<div class="ex"><span class="de">Die Haltestelle ist in der Mitte <mark>der Stadt</mark>.</span><span class="tr">The stop is in the middle of the city.</span></div>
+
+<h4>Names: just add -s, no apostrophe</h4>
+<div class="ex"><span class="de"><mark>Marias</mark> Auto · <mark>Pakhis</mark> Handy · <mark>Alis</mark> Bruder · <mark>Frau Schmidts</mark> Tochter</span><span class="tr">Maria's car · Pakhi's phone · Ali's brother · Mrs Schmidt's daughter</span></div>
+<div class="tip">Names that already end in <b>-s</b> or <b>-z</b> get only an apostrophe: <span class="de">Hans' Auto, Thomas' Buch</span>. Easier: say <span class="de">das Auto von Hans</span>.</div>
+
+<h4>The spoken way: von + Dativ (also correct in the exam)</h4>
+<div class="tbl-scroll"><table class="t"><thead><tr><th>Genitiv (written, B1 style)</th><th>von + Dativ (spoken, everyday)</th><th>English</th></tr></thead><tbody>
+<tr><td class="de">das Auto <b>meines Vaters</b></td><td class="de">das Auto <b>von meinem Vater</b></td><td>my father's car</td></tr>
+<tr><td class="de">die Wohnung <b>meiner Schwester</b></td><td class="de">die Wohnung <b>von meiner Schwester</b></td><td>my sister's flat</td></tr>
+<tr><td class="de"><b>Pakhis</b> Handy</td><td class="de">das Handy <b>von Pakhi</b></td><td>Pakhi's phone</td></tr>
+<tr><td class="de">das Haus <b>meiner Eltern</b></td><td class="de">das Haus <b>von meinen Eltern</b></td><td>my parents' house</td></tr>
+</tbody></table></div>
+<div class="rule"><b>Exam tactic:</b> in the <b>speaking</b> test use <b>von + Dativ</b>, it sounds natural. In the <b>letter</b>, use one or two Genitiv phrases (<i>wegen meiner Arbeit</i>, <i>während der Woche</i>) to show B1 level. Both are correct German.</div>
+
+<h4>The four prepositions that want Genitiv: the exam's favourites</h4>
+<div class="tbl-scroll"><table class="t"><thead><tr><th>Prep</th><th>English</th><th>Example</th></tr></thead><tbody>
+<tr><td class="de"><span class="prp">wegen</span></td><td>because of</td><td class="de">Wegen <mark>des Regens</mark> bleiben wir zu Hause.<span class="tr">Because of the rain we stay at home.</span></td></tr>
+<tr><td class="de"><span class="prp">trotz</span></td><td>despite</td><td class="de">Trotz <mark>der Kälte</mark> gehen die Kinder raus.<span class="tr">Despite the cold the children go outside.</span></td></tr>
+<tr><td class="de"><span class="prp">während</span></td><td>during</td><td class="de">Während <mark>der Woche</mark> habe ich keine Zeit.<span class="tr">During the week I have no time.</span></td></tr>
+<tr><td class="de"><span class="prp">(an)statt</span></td><td>instead of</td><td class="de">Statt <mark>eines Geschenks</mark> gebe ich ihr Geld.<span class="tr">Instead of a present I give her money.</span></td></tr>
+<tr><td class="de"><span class="prp">innerhalb</span> / <span class="prp">außerhalb</span></td><td>within / outside of (recognise)</td><td class="de">Innerhalb <mark>einer Woche</mark> bekommen Sie eine Antwort.<span class="tr">Within a week you get an answer.</span></td></tr>
+</tbody></table></div>
+<div class="tip">On the street you hear <b>Dativ</b> after these: <i>wegen dem Regen</i>. In <b>Sprachbausteine</b> the answer they want is the Genitiv one: <b>wegen des</b>, <b>trotz des</b>, <b>während der</b>. When you see one of the four words and a gap, think "des or der?".</div>
+<div class="esel"><span class="tag">Memory trick</span>Say them in one breath: <b>wegen – trotz – während – statt</b>. Four words, one case: Genitiv. Then ask "girls and groups?" → <b>der</b>; otherwise → <b>des</b> + <b>-s</b>.</div>
+
+<h4>Adjective after the Genitiv article: always -en</h4>
+<div class="ex"><span class="de">wegen des schlecht<mark>en</mark> Wetters · trotz der groß<mark>en</mark> Hitze · während der letzt<mark>en</mark> Woche · das Auto meines älter<mark>en</mark> Bruders</span><span class="tr">because of the bad weather · despite the great heat · during the last week · my older brother's car</span></div>
+<div class="tip">The lifesaver rule from card 5 works here too: <b>Dativ, Genitiv or plural → -en</b>.</div>
+
+<h4>Ready-made Genitiv phrases for the letter (copy them)</h4>
+<div class="tbl-scroll"><table class="t"><thead><tr><th>Phrase</th><th>English</th></tr></thead><tbody>
+<tr><td class="de">wegen meiner Arbeit</td><td>because of my work</td></tr>
+<tr><td class="de">wegen einer Erkältung</td><td>because of a cold</td></tr>
+<tr><td class="de">wegen des Wetters</td><td>because of the weather</td></tr>
+<tr><td class="de">während der Woche / während des Unterrichts / während der Ferien</td><td>during the week / during the lesson / during the holidays</td></tr>
+<tr><td class="de">trotz des schlechten Wetters</td><td>despite the bad weather</td></tr>
+<tr><td class="de">trotz meiner Erkältung</td><td>despite my cold</td></tr>
+<tr><td class="de">am Ende des Monats / am Anfang des Jahres</td><td>at the end of the month / at the beginning of the year</td></tr>
+<tr><td class="de">in der Mitte der Stadt</td><td>in the middle of the city</td></tr>
+<tr><td class="de">die Hälfte der Zeit</td><td>half of the time</td></tr>
+<tr><td class="de">die Adresse meines Arztes</td><td>my doctor's address</td></tr>
+<tr><td class="de">der Name der Straße</td><td>the name of the street</td></tr>
+<tr><td class="de">die Meinung meiner Eltern</td><td>my parents' opinion</td></tr>
+</tbody></table></div>
+
+<details class="fold"><summary>👀 Recognise only: dessen / deren and the Genitiv in reading texts</summary><div>
+<p><b>dessen</b> (for der/das) and <b>deren</b> (for die/plural) mean "whose" inside a relative clause. You do not need to produce them, but you must not panic when you read them.</p>
+<div class="ex"><span class="de">Das ist der Kollege, <mark>dessen</mark> Auto kaputt ist.</span><span class="tr">That is the colleague whose car is broken.</span></div>
+<div class="ex"><span class="de">Die Nachbarin, <mark>deren</mark> Kinder so laut sind, zieht um.</span><span class="tr">The neighbour whose children are so loud is moving house.</span></div>
+<p>Reading texts and the Hören news love these quantity phrases:</p>
+<div class="ex"><span class="de">die Hälfte <mark>der Deutschen</mark> · ein Drittel <mark>der Befragten</mark> · die Mehrheit <mark>der Eltern</mark> · 20 Prozent <mark>der Schüler</mark></span><span class="tr">half of the Germans · a third of the people asked · the majority of parents · 20 percent of the pupils</span></div>
+</div></details>
+
+<div class="drill" id="genitiv-drill">
+<div class="drill-head"><b>✍️ Quick check — Genitiv</b> <span class="mini">10 items</span></div>
+<p class="drill-howto">Choose or type. Every item here is a rule from this card.</p>
+<ol class="drill-list">
+<li class="q" data-type="mc" data-opts="meines Vaters|meinem Vater|mein Vater" data-a="meines Vaters" data-why="Owner after the thing = Genitiv. Masculine: meines + Vater-s.">
+<span class="q-p">Das ist das Auto ___ . <span class="tr">(That is my father's car.)</span></span>
+</li>
+<li class="q" data-type="mc" data-opts="des Regens|dem Regen|den Regen" data-a="des Regens" data-why="wegen + Genitiv. Spoken German says wegen dem Regen, but the exam wants des Regens.">
+<span class="q-p">Wegen ___ bleiben wir zu Hause. <span class="tr">(Because of the rain we stay at home. Written form, as in the exam.)</span></span>
+</li>
+<li class="q" data-a="der" data-why="während + Genitiv. die Woche is feminine → der Woche (girls and groups get der).">
+<span class="q-p">Während ___ Woche habe ich keine Zeit. <span class="tr">(During the week I have no time.)</span></span>
+</li>
+<li class="q" data-a="des Lehrers" data-why="der Lehrer is masculine → des + Lehrer-s.">
+<span class="q-p">Der Name ___ ist Herr Weber. (der Lehrer) <span class="tr">(The teacher's name is Mr Weber.)</span></span>
+</li>
+<li class="q" data-a="meiner" data-why="die Schwester is feminine → meiner Schwester.">
+<span class="q-p">Die Wohnung ___ Schwester ist klein. <span class="tr">(My sister's flat is small.)</span></span>
+</li>
+<li class="q" data-type="mc" data-opts="Pakhis|Pakhi's|Pakhi" data-a="Pakhis" data-why="Names just get -s, no apostrophe: Pakhis Handy.">
+<span class="q-p">___ Handy ist kaputt. <span class="tr">(Pakhi's phone is broken.)</span></span>
+</li>
+<li class="q" data-a="meiner" data-why="Eltern is plural → meiner Eltern (girls and groups get der / meiner).">
+<span class="q-p">Das ist das Haus ___ Eltern. <span class="tr">(That is my parents' house.)</span></span>
+</li>
+<li class="q" data-type="mc" data-opts="eines Geschenks|ein Geschenk|einem Geschenk" data-a="eines Geschenks" data-why="statt + Genitiv. das Geschenk is neuter → eines + Geschenk-s.">
+<span class="q-p">Statt ___ gebe ich ihr Geld. <span class="tr">(Instead of a present I give her money. Written form, as in the exam.)</span></span>
+</li>
+<li class="q" data-type="mc" data-opts="schlechten|schlechtes|schlechte" data-a="schlechten" data-why="After the Genitiv article the adjective always ends in -en.">
+<span class="q-p">Wegen des ___ Wetters bleiben wir drinnen. <span class="tr">(Because of the bad weather we stay inside.)</span></span>
+</li>
+<li class="q" data-type="mc" data-opts="von meinem Vater|von meinen Vater|von mein Vater" data-a="von meinem Vater" data-why="The spoken way is von + Dativ: von meinem Vater.">
+<span class="q-p">das Auto meines Vaters = das Auto ___ <span class="tr">(my father's car, said the everyday way)</span></span>
+</li>
+</ol>
+</div>
 </div>
 
 <div class="card">
@@ -6767,14 +6899,14 @@ When you write, always check: do I mean "was / became" (wurde) or "would" (würd
 <div class="esel"><span class="tag">Memory trick</span>Sing <b>aus – bei – mit – nach – seit – von – zu</b> to the melody of the "Blue Danube" waltz. Millions of German learners do this – it works!</div>
 </div></details>
 
-<details class="fold"><summary>🎯 Genitiv preps (rare but tested) <span class="mini">4 preps</span></summary><div>
+<details class="fold"><summary>🎯 Genitiv preps (tested in Sprachbausteine) <span class="mini">4 preps</span></summary><div>
 <div class="tbl-scroll"><table class="t"><thead><tr><th>Prep</th><th>English</th><th>Example</th></tr></thead><tbody>
 <tr><td class="de"><span class="prp">während</span></td><td>during</td><td class="de">Während des Sommers arbeite ich.</td></tr>
 <tr><td class="de"><span class="prp">wegen</span></td><td>because of</td><td class="de">Wegen des Wetters bleiben wir zu Hause.</td></tr>
 <tr><td class="de"><span class="prp">trotz</span></td><td>despite</td><td class="de">Trotz des Regens gehen wir raus.</td></tr>
 <tr><td class="de"><span class="prp">statt</span></td><td>instead of</td><td class="de">Statt eines Autos kaufe ich ein Fahrrad.</td></tr>
 </tbody></table></div>
-<div class="tip">In spoken German, people often use <b>Dativ</b> here: "wegen <b>dem</b> Wetter". For the written exam, Genitiv looks better – but nobody fails because of this.</div>
+<div class="tip">In spoken German, people often use <b>Dativ</b> here: "wegen <b>dem</b> Wetter". For the written exam, Genitiv looks better – but nobody fails because of this. Full lesson with a quick check: <a href="#genitiv">card 1b</a>.</div>
 </div></details>
 
 <figure class="imgbox"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Klassenzimmer-viktor-von-scheffel.JPG/960px-Klassenzimmer-viktor-von-scheffel.JPG" alt="A German classroom with desks and a blackboard" loading="lazy" onerror="this.closest('figure').style.display='none'"><figcaption><b>Wo hängt die Tafel? – An der Wand (Dativ). Wohin gehst du? – In das Klassenzimmer (Akkusativ).</b> — Where does the board hang? – On the wall (Dativ). Where are you going (to)? – Into the classroom (Akkusativ).</figcaption></figure>
@@ -11996,7 +12128,7 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
     <h3>Coverage checklist — tap to tick ✓</h3>
     <ul class="chk">
       <li><b>Exam format</b> — all 9 written tasks + 3 oral parts, points, timing and pass rules, verified against the official telc Übungstest</li>
-      <li><b>Grammar</b> — the complete A1→B1 inventory: 4 cases, articles &amp; pronouns (incl. dieser, man, jemand…), adjective endings, comparison, all prepositions, negation, plurals &amp; genders</li>
+      <li><b>Grammar</b> — the complete A1→B1 inventory: 4 cases (incl. a full Genitiv lesson), articles &amp; pronouns (incl. dieser, man, jemand…), adjective endings, comparison, all prepositions, negation, plurals &amp; genders</li>
       <li><b>Verb system</b> — present, Perfekt (haben/sein), Präteritum, Plusquamperfekt, Futur I, all modals, imperative, reflexive, Konjunktiv II, passive, lassen, zu + Infinitiv</li>
       <li><b>Sentence building</b> — verb position rules, Satzklammer, TeKaMoLo, all three connector buckets, relative clauses, indirect questions, two-part connectors</li>
       <li><b>Verb tables</b> — 60 irregular verbs with Präteritum + Perfekt, ~110 high-frequency verbs, 60+ verb-preposition combos, dative verbs, adjective + preposition</li>
@@ -12571,6 +12703,53 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
   window.telcSearch = { open: openSearch, run: q => { if (!IDX) buildIndex(); return run(tokens(q), nmap(q).n, false).map(r => r.it.crumb + ' :: ' + r.it.raw.slice(0, 80)); }, verbs: q => findVerbs(q).map(x => x.v.inf) };
 })();
 
+</script>
+<div class="ask" id="askPanel" hidden>
+  <div class="ask-panel" role="dialog" aria-label="Ask a question about what you are reading">
+    <div class="ask-top"><b>💬 Ask about what you are reading</b><button type="button" class="gs-close" data-ask-close aria-label="Close">✕</button></div>
+    <div class="ask-ctx" id="askCtx"></div>
+    <textarea id="askText" rows="3" placeholder="Your doubt, in English or German … e.g. why dem and not den?"></textarea>
+    <div class="ask-actions"><button type="button" class="q-btn" data-ask-go>Open in Claude ↗</button><button type="button" class="gs-close" data-ask-copy>Copy question</button></div>
+    <p class="ask-hint">Opens claude.ai with your question, the section you are in and any text you selected. If the box there is empty, just paste: the question is already copied.</p>
+  </div>
+</div>
+<script>
+(function(){
+  const openBtn = document.querySelector('[data-ask]'), panel = document.getElementById('askPanel');
+  if (!openBtn || !panel) return;
+  const ctx = document.getElementById('askCtx'), ta = document.getElementById('askText');
+  let where = '', sel = '';
+  const heading = () => {
+    let h = '';
+    document.querySelectorAll('main h2, main h3').forEach(x => { if (x.getBoundingClientRect().top < 140) h = x.textContent.replace(/\s+/g, ' ').trim(); });
+    return h;
+  };
+  const build = () => {
+    const parts = ['I am learning German for the telc B1 exam. My level is about A2. Explain it like I am five: short steps, 3 example sentences with English translations, and one memory trick.'];
+    if (where) parts.push('I am reading the section "' + where + '" of my study guide.');
+    if (sel) parts.push('Text from the guide: "' + sel + '"');
+    parts.push('My question: ' + (ta.value.trim() || 'Please explain this part.'));
+    return parts.join('\n');
+  };
+  const show = () => {
+    sel = String(window.getSelection ? window.getSelection() : '').replace(/\s+/g, ' ').trim().slice(0, 300);
+    where = heading();
+    ctx.textContent = (where ? 'Section: ' + where : 'Whole guide') + (sel ? ' · selected: “' + sel.slice(0, 80) + (sel.length > 80 ? '…' : '') + '”' : '');
+    panel.hidden = false;
+    setTimeout(() => ta.focus(), 50);
+  };
+  const hide = () => { panel.hidden = true; };
+  const copy = () => { try { navigator.clipboard.writeText(build()); } catch (e) {} };
+  openBtn.addEventListener('click', show);
+  panel.addEventListener('click', e => { if (e.target === panel || e.target.closest('[data-ask-close]')) hide(); });
+  panel.querySelector('[data-ask-copy]').addEventListener('click', () => { copy(); hide(); });
+  panel.querySelector('[data-ask-go]').addEventListener('click', () => {
+    window.open('https://claude.ai/new?q=' + encodeURIComponent(build()), '_blank', 'noopener');
+    copy();
+    hide();
+  });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) hide(); });
+})();
 </script>
 </body>
 </html>

@@ -2,7 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#f2f1ec">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="telc B1">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <title>telc Deutsch B1 · Complete Prep Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -249,6 +257,40 @@
   .ask textarea{width:100%; font:inherit; font-size:1rem; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; background:var(--card); color:var(--ink); resize:vertical;}
   .ask-actions{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap;}
   .ask-hint{font-size:.78rem; color:var(--ink-soft); margin:8px 0 0;}
+  .mbar{display:none;}
+  .menu{position:fixed; inset:0; z-index:110; background:rgba(23,26,36,.45);}
+  .menu[hidden]{display:none;}
+  .menu-panel{position:absolute; top:0; bottom:0; left:0; width:min(420px,100%); background:var(--paper); display:flex; flex-direction:column; box-shadow:10px 0 40px rgba(0,0,0,.25);}
+  .menu-top{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:12px 14px; border-bottom:1px solid var(--line); background:var(--card);}
+  .menu-top b{font-family:"Bricolage Grotesque",sans-serif; font-size:1.05rem;}
+  .menu-list{overflow-y:auto; -webkit-overflow-scrolling:touch; padding:6px 0 calc(16px + env(safe-area-inset-bottom)); flex:1;}
+  .menu-list details{border-bottom:1px solid var(--line);}
+  .menu-list summary{list-style:none; cursor:pointer; display:flex; align-items:center; gap:10px; padding:11px 14px; font-weight:700; font-size:.95rem;}
+  .menu-list summary::-webkit-details-marker{display:none;}
+  .menu-list summary .n{font-family:"JetBrains Mono",monospace; font-size:.7rem; color:#fff; background:var(--brand); border-radius:5px; padding:2px 6px; min-width:26px; text-align:center; flex:0 0 auto;}
+  .menu-list summary .go{margin-left:auto; color:var(--ink-soft); font-weight:600; font-size:.78rem; text-decoration:none; padding:4px 9px; border:1px solid var(--line); border-radius:999px; background:var(--card); flex:0 0 auto;}
+  .menu-list details.cur summary{background:var(--brand-bg);}
+  .menu-list a.item{display:block; padding:8px 14px 8px 50px; color:var(--ink); text-decoration:none; font-size:.9rem; border-top:1px dashed var(--line);}
+  .menu-list a.item:hover, .menu-list a.item.cur{background:var(--card); color:var(--brand); font-weight:600;}
+  .toast{position:fixed; left:50%; bottom:calc(76px + env(safe-area-inset-bottom)); transform:translateX(-50%); z-index:105; background:var(--ink); color:#fff; padding:10px 14px; border-radius:999px; font-size:.86rem; display:flex; gap:12px; align-items:center; box-shadow:0 8px 24px rgba(0,0,0,.25); max-width:calc(100% - 32px);}
+  .toast button{font:inherit; font-weight:700; color:#ffd9d3; background:none; border:0; cursor:pointer; padding:0; white-space:nowrap;}
+  .toast[hidden]{display:none;}
+  .tbl-scroll{position:relative;}
+  .tbl-scroll.can-scroll::after{content:""; position:absolute; top:0; right:0; bottom:0; width:28px; pointer-events:none; background:linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.95)); border-radius:0 10px 10px 0;}
+  .tbl-scroll.can-scroll.at-end::after{display:none;}
+  .tbl-scroll.stickyfirst th:first-child, .tbl-scroll.stickyfirst td:first-child{position:sticky; left:0; z-index:1; background:var(--card); box-shadow:1px 0 0 var(--line);}
+  .tbl-scroll.stickyfirst thead th:first-child{background:#faf9f5;}
+  @media(max-width:700px){
+    body{padding-bottom:calc(64px + env(safe-area-inset-bottom));}
+    #toTop{display:none!important;}
+    .mbar{display:flex; position:fixed; left:0; right:0; bottom:0; z-index:90; background:rgba(242,241,236,.985); backdrop-filter:blur(10px); border-top:1px solid var(--line); padding:6px 8px calc(6px + env(safe-area-inset-bottom));}
+    .mbar button{flex:1; font:inherit; font-size:.72rem; font-weight:700; color:var(--ink-soft); background:none; border:0; border-radius:10px; padding:6px 2px; display:flex; flex-direction:column; align-items:center; gap:2px; cursor:pointer;}
+    .mbar button .ic{font-size:1.25rem; line-height:1;}
+    .mbar button:active{background:var(--card);}
+    header.bar .search-btn, header.bar .ask-btn{display:none;}
+    .toast{bottom:calc(72px + env(safe-area-inset-bottom));}
+  }
+  @media(min-width:701px){ .toast{bottom:24px;} }
   .search-btn svg{display:block; flex:0 0 auto;}
   .search-btn kbd{font-family:"JetBrains Mono",monospace; font-size:.66rem; background:rgba(255,255,255,.18); border-radius:4px; padding:0 5px;}
   .hero-search{display:flex; align-items:center; gap:10px; width:100%; max-width:640px; margin:18px 0 4px; padding:13px 16px; border-radius:14px; border:1.5px solid var(--line); background:var(--card); box-shadow:var(--shadow); font:inherit; font-size:1rem; color:var(--ink-soft); cursor:text; text-align:left;}
@@ -349,7 +391,7 @@
 
 <div class="card">
 <h3>📝 The written exam — 225 points, 9 tasks</h3>
-<p>The written exam takes about 2½ hours of work plus a 20-minute break. It always runs in this order. All numbers below come from the official telc materials.</p>
+<p>The written exam is <b>150 minutes</b> of test time: 90 + about 30 + 30. Most centres add a 20-minute break after the 90-minute block, but the official practice-test booklet does not promise one, so ask your centre. It always runs in this order. All numbers below were checked against the official telc Übungstest 1 (2020 edition).</p>
 <div class="tbl-scroll"><table class="t">
 <thead><tr><th>Task</th><th>What you get</th><th>Points</th><th>Strategy in one line</th></tr></thead>
 <tbody>
@@ -361,10 +403,10 @@
 <tr><td class="de">Hören 1<br>global</td><td>5 short texts, richtig/falsch — <b>plays ONCE</b></td><td>25<br>(5 × 5)</td><td>Read all 5 statements before the audio starts.</td></tr>
 <tr><td class="de">Hören 2<br>detail</td><td>1 long conversation/interview, 10 richtig/falsch — plays twice</td><td>25<br>(10 × 2,5)</td><td>1st listen: answer. 2nd listen: check.</td></tr>
 <tr><td class="de">Hören 3<br>selective</td><td>5 announcements, richtig/falsch — plays twice</td><td>25<br>(5 × 5)</td><td>Hunt for numbers, times, prices, places.</td></tr>
-<tr><td class="de">Brief<br>(writing)</td><td>1 semi-formal letter/e-mail answering 4 guiding points, 30 min</td><td>45</td><td>Cover all 4 points — that is most of the marks.</td></tr>
+<tr><td class="de">E-Mail<br>(writing)</td><td>1 informal (du) or semi-formal (Sie) e-mail answering 4 guiding points, 30 min</td><td>45</td><td>Cover all 4 points — that is most of the marks.</td></tr>
 </tbody>
 </table></div>
-<div class="tip"><b>The clock, exactly:</b> ① Reading + Sprachbausteine share <b>one 90-minute block</b> — you decide how to split it. ② 20-minute break. ③ Listening, about <b>30 minutes</b> — the audio controls the speed, not you. ④ The letter is its <b>own separate 30-minute block</b> at the end.</div>
+<div class="tip"><b>The clock, exactly:</b> ① Reading + Sprachbausteine share <b>one 90-minute block</b> — you decide how to split it. ② Usually a 20-minute break (ask your centre). ③ Listening, about <b>30 minutes</b> — the audio controls the speed, not you. ④ The letter is its <b>own separate 30-minute block</b> at the end.</div>
 <div class="tip warn"><b>Common mistake:</b> people think they must "save" reading time for the letter. No! The letter has its own 30 minutes — you can never borrow time between blocks. So use the full 90 minutes for reading + gaps, and keep about 10 of those minutes to copy your answers onto the answer sheet (der Antwortbogen — the official sheet the machine reads; only answers on it count).</div>
 </div>
 
@@ -374,9 +416,9 @@
 <div class="tbl-scroll"><table class="t">
 <thead><tr><th>Part</th><th>What happens</th><th>Time · Points</th></tr></thead>
 <tbody>
-<tr><td class="de">Teil 1<br>Kontaktaufnahme</td><td>"Making contact": you introduce yourselves and ask each other simple personal questions (job, family, hobbies, languages).</td><td>3–4 min · <b>15</b></td></tr>
-<tr><td class="de">Teil 2<br>Gespräch über ein Thema</td><td>"Conversation about a topic": each of you gets short info on a topic; you report it, give your opinion and experience, and react to your partner.</td><td>5–6 min · <b>30</b></td></tr>
-<tr><td class="de">Teil 3<br>Gemeinsam etwas planen</td><td>"Planning something together" (official name: Gemeinsam eine Aufgabe lösen — solving a task together): suggest, agree, disagree politely, decide together.</td><td>5–6 min · <b>30</b></td></tr>
+<tr><td class="de">Teil 1<br>Einander kennenlernen</td><td>"Getting to know each other" (older name: Kontaktaufnahme): you introduce yourselves and ask each other about name, where you come from, how you live, family, where you learned German, job or studies, and languages (which, how long, why). The examiners may add the weekend or hobbies.</td><td>about 3 min · <b>15</b></td></tr>
+<tr><td class="de">Teil 2<br>Über ein Thema sprechen</td><td>"Talking about a topic" (older name: Gespräch über ein Thema): you and your partner each get a <b>different</b> short opinion on the same topic. First you tell each other what your text says, then you discuss it with your own opinion and experience.</td><td>about 6 min · <b>30</b></td></tr>
+<tr><td class="de">Teil 3<br>Gemeinsam etwas planen</td><td>"Planning something together" (older name: Gemeinsam eine Aufgabe lösen): a party, trip or event with a list of open points (when, where, food, drinks, who pays …). Suggest, give reasons, react to your partner, agree on one plan.</td><td>about 6 min · <b>30</b></td></tr>
 </tbody>
 </table></div>
 <h4>How the 75 points are scored</h4>
@@ -488,6 +530,7 @@
 <h4>The golden rule: read the statements BEFORE the audio</h4>
 <p>The recording always gives you time to read the statements first — use every second of it. Underline the key word in each statement. While listening, you only check: does the audio say this, yes or no?</p>
 <div class="tip warn"><b>Teil 1 plays only ONCE.</b> This is the hardest moment of the whole exam — there is no second chance. Train this part more than any other: full focus for those few minutes, phone away, one listen only when you practise.</div>
+<div class="tip">On the answer sheet you mark <b>+</b> for richtig and <b>–</b> for falsch. Reading time before the audio: <b>30 seconds</b> for the 5 statements of Teil 1 and <b>1 minute</b> for the 10 statements of Teil 2 (official Übungstest).</div>
 <h4>Teil 2 (long conversation, plays twice)</h4>
 <p>The 10 statements follow the conversation in order. First listen: answer everything you can. Second listen: check and fix. If you missed one, mark a guess and let it go — richtig/falsch means even a blind guess wins half the time.</p>
 <h4>Teil 3 (announcements, plays twice): hunt the numbers</h4>
@@ -11048,26 +11091,27 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
 </section>
 <section class="section" id="schreiben">
 <div class="sec-head"><span class="sec-tag">Write</span><h2>Writing — the letter (45 points)</h2><span class="roi hi">HIGHEST ROI</span></div>
-<p class="sec-sub">One semi-formal letter or e-mail, 30 minutes, fully formulaic. Learn the skeleton + phrases here and these 45 points are almost a gift.</p>
+<p class="sec-sub">One e-mail, informal (to a friend, du) or semi-formal (to a course leader, a neighbour, a colleague or your boss, Sie), 30 minutes, fully formulaic. Learn the skeleton + phrases here and these 45 points are almost a gift.</p>
 <hr class="sec-rule">
 
 <div class="card">
   <h3>The task</h3>
-  <p>You get a short situation (for example: "Your German course was bad. Write to the language school.") plus <b>4 Leitpunkte</b> — guiding points, small bullet points that tell you what your letter must talk about. You write <b>one reply letter</b> in about <b>30 minutes</b>. Aim for <b>80–120 words</b> — more is not better, correct and complete is better.</p>
+  <p>You get a short situation, usually an e-mail you must answer (in the official practice test: a friend who wants to visit your country; in other tasks a friend who moves to your city, a course leader who invites the class, a neighbour or a colleague), plus <b>4 Leitpunkte</b> — guiding points, small bullet points that tell you what your letter must talk about. You write <b>one reply letter</b> in about <b>30 minutes</b>. Aim for <b>80–120 words</b> — more is not better, correct and complete is better.</p>
   <h4>How it is graded (in simple words)</h4>
   <ul class="clean">
-    <li><b>Content</b> — did you answer <u>all 4</u> guiding points?</li>
-    <li><b>Structure</b> — greeting, clear middle part, closing line, sign-off. Does it look like a real letter?</li>
-    <li><b>Language</b> — grammar, spelling, word order. Small mistakes are OK at B1. The examiners expect them.</li>
+    <li><b>Content</b> (Aufgabenbewältigung) — how many of the <u>4</u> guiding points you really answer: 4 = full marks, 3 = B, 2 = C, 1 or 0 = zero for this criterion. One short sentence per point is enough, and two points may share one sentence.</li>
+    <li><b>Structure</b> (Kommunikative Gestaltung) — does it read like a real e-mail: greeting, a connected middle part, closing line, sign-off, one register (du <i>or</i> Sie). telc gives no top mark if the points stand unconnected, if most sentences start with <i>Ich</i> or <i>Wir</i>, or if du and Sie are mixed. Sender address, date and subject line are <b>not</b> required.</li>
+    <li><b>Language</b> (Formale Richtigkeit) — grammar, spelling, word order. Understandability counts most: a wrong ending or gender costs less than a wrong verb form or a subject that does not match its verb. Small mistakes are OK at B1. The examiners expect them.</li>
   </ul>
-  <p>All three criteria count <b>equally</b> — 15 points each.</p>
-  <div class="tip warn"><b>The killer rule:</b> missing one Leitpunkt = a massive point loss. And telc's official rule: if you properly cover <b>only one Leitpunkt or none</b> — or your language has so many mistakes that the letter is barely understandable — the whole letter scores <b>0 points</b>, even if everything else is fine. So: write the 4 points on your paper, and <b>tick each one off</b> while you write. Never hand in a letter with an unticked point.</div>
+  <p>Each criterion gets A, B, C or D (5, 3, 1 or 0 points); the sum is multiplied by 3. So all three count <b>equally</b> — 15 points each, 45 in total.</p>
+  <div class="tip warn"><b>The killer rule:</b> missing one Leitpunkt = a massive point loss. telc's official rules: cover <b>only one Leitpunkt or none</b> and the content criterion is <b>0</b> (language is still graded). Write about something that has nothing to do with the task ("Thema verfehlt") and <b>all three</b> criteria are 0. Write the right topic to the wrong person or situation and the content criterion is 0. So: write the 4 points on your paper, and <b>tick each one off</b> while you write. Never hand in a letter with an unticked point.</div>
   <div class="tip go">Good news: nobody expects beautiful German. A simple letter that covers all 4 points with the fixed phrases below beats a "creative" letter that forgets one point. Boring wins here.</div>
 </div>
 
 <div class="card">
   <h3>The skeleton (never change the order)</h3>
   <ol class="clean">
+    <li><b>Betreff</b> (subject line) — 2–4 words, e.g. <span class="de">Betreff: Dein Besuch im Sommer</span>. The task asks you to think of one; the graders do not require it, so keep it short and move on.</li>
     <li><b>Anrede</b> (greeting) + comma → next line starts <b>lowercase</b></li>
     <li><b>Einleitung</b> (opening) — why you are writing (1 sentence)</li>
     <li><b>Hauptteil</b> (main part) — answer <u>every</u> Leitpunkt, each one with its own connector word</li>
@@ -11106,6 +11150,7 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
   </div>
   <div class="rm"><div class="h">Einleitung (opening)</div>
     <ul>
+      <li><b>Vielen Dank für deine E-Mail. Ich habe mich sehr gefreut.</b> — Thanks for your e-mail. I was very happy. (informal; in the real task you answer an e-mail, so this is line 1 almost every time)</li>
       <li><b>Ich schreibe Ihnen, weil …</b> — I'm writing to you because…</li>
       <li><b>Vielen Dank für Ihre E-Mail / Ihr Angebot.</b> — Thanks for your email / your offer.</li>
       <li><b>Ich habe Ihre Anzeige gelesen und interessiere mich für …</b> — I read your ad and I'm interested in…</li>
@@ -11155,9 +11200,152 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
   <div class="esel"><span class="tag">Memory trick — the "connector sandwich"</span>Start each Hauptteil point with a different connector: <b>Zuerst… → Außerdem… → Ein weiterer Punkt ist… → Zum Schluss…</b> This alone makes your letter look organised and B1-level, and it forces you to cover all four Leitpunkte. Examiners reward visible structure.</div>
 </div>
 
+<div class="card" id="brief-easy">
+  <h3>⭐ What telc really asks — and the easy kit <span class="mini">new, November 2026</span></h3>
+  <p>Since the 2020 edition the writing task always has the same shape: <b>you answer an e-mail you received</b>. It comes from a friend (du) or from someone you know a little (Sie: your course leader, a neighbour, a colleague, your boss). telc calls this an <i>informelle oder halbformelle E-Mail</i>. A formal complaint to a company ("Sehr geehrte Damen und Herren, ich möchte mich beschweren") is the old Zertifikat Deutsch and DTZ style — possible, but rare now. So your first line is almost always a thank-you, not "Ich schreibe Ihnen, weil …".</p>
+  <div class="tip"><b>Where this comes from:</b> the official telc Übungstest 1 (2020) describes the part as "Schreiben einer informellen oder halbformellen E-Mail, 4 Leitpunkte, 30 Min.", and its grading text speaks of "persönliche oder halbformelle E-Mails". Its own example of a task: accept an invitation from your course leader.</div>
+
+  <h4>The 10 situations that come again and again</h4>
+  <p>telc publishes no statistics. This table counts the official practice test, 35 telc-style tasks of one training site and the examples of six teacher sites (checked November 2026). Top = most often seen.</p>
+  <div class="tbl-scroll"><table class="t">
+    <tr><th>Who writes to you</th><th>du / Sie</th><th>What the 4 points usually ask</th></tr>
+    <tr><td><b>A friend wants to visit you</b> (or you visit them) — the official telc test</td><td>du</td><td>best time · what you will do together · weather + which clothes to bring · where they sleep / how to prepare</td></tr>
+    <tr><td><b>An invitation</b>: birthday, wedding, party, farewell party after the course</td><td>du, or Sie (course leader)</td><td>thank · say yes or no with a reason · what to bring / a gift · offer help or suggest a new date</td></tr>
+    <tr><td><b>A friend moves</b> — to your city or to a new flat</td><td>du</td><td>when you can help · which district you recommend and why · what to do before · an idea for the first weekend</td></tr>
+    <tr><td><b>A friend asks for help</b> (cat, child, party, moving)</td><td>du</td><td>yes/no + reason · when · suggest a meeting · ask something back</td></tr>
+    <tr><td><b>A friend has news or a problem</b> (new job, trouble with a neighbour, lonely in a new city)</td><td>du</td><td>react · your own experience · give advice · suggest a meeting</td></tr>
+    <tr><td><b>Plan a trip together</b> (weekend, holiday, festival, trip after the exam)</td><td>du</td><td>when · where / what · how to travel · what to bring / who books</td></tr>
+    <tr><td><b>Holiday greetings or congratulations</b> (B1 passed!)</td><td>du</td><td>thank · how you are · your own plans · suggest a meeting</td></tr>
+    <tr><td><b>Course leader</b>: cancel or move an appointment, accept an invitation, continue after the course</td><td>Sie</td><td>thank · reason · new date / suggestion · a question</td></tr>
+    <tr><td><b>Neighbour, colleague, boss</b>: announce a party, help a new colleague, a day off</td><td>Sie</td><td>reason · when · ask for understanding / suggestion · offer help</td></tr>
+    <tr><td><b>A company</b>: complaint, request for information, cancellation</td><td>Sie</td><td>old Zertifikat Deutsch / DTZ style — rare in today's telc B1, train it last</td></tr>
+  </table></div>
+  <div class="esel"><span class="tag">The hidden pattern</span>The topics change, the <b>jobs</b> do not. Almost every task asks you to: thank → say yes or no → suggest a time or a meeting → give a tip or describe something → ask one question back. Learn those five jobs with easy words and you can answer any topic.</div>
+
+  <h4>Easy kit — 30 short sentences, A2 words only</h4>
+  <p>Learn these instead of long phrases. Every sentence has fewer than 10 words. Take one per Leitpunkt, add greeting and sign-off, and the e-mail is done. The <b>du</b> form comes first, the <b>Sie</b> form in brackets.</p>
+  <h4>1 · Start — thank (line 1, almost every time)</h4>
+  <ul>
+    <li><b>Vielen Dank für deine E-Mail. Ich habe mich sehr gefreut.</b> (Vielen Dank für Ihre E-Mail.) — Thanks for your e-mail. I was very happy.</li>
+    <li><b>Danke für die Einladung!</b> (Vielen Dank für die Einladung.) — Thanks for the invitation!</li>
+    <li><b>Entschuldige, dass ich erst jetzt schreibe.</b> (Entschuldigen Sie, dass …) — Sorry that I am only writing now.</li>
+  </ul>
+  <h4>2 · React to the news</h4>
+  <ul>
+    <li><b>Das ist eine tolle Idee!</b> — That is a great idea!</li>
+    <li><b>Das ist eine gute Nachricht.</b> — That is good news.</li>
+    <li><b>Das tut mir leid.</b> — I am sorry to hear that.</li>
+  </ul>
+  <h4>3 · Say yes</h4>
+  <ul>
+    <li><b>Ich komme gern.</b> — I will gladly come.</li>
+    <li><b>Ja, ich habe Zeit.</b> — Yes, I have time.</li>
+    <li><b>Natürlich helfe ich dir.</b> (Natürlich helfe ich Ihnen.) — Of course I will help you.</li>
+  </ul>
+  <h4>4 · Say no + reason</h4>
+  <ul>
+    <li><b>Leider kann ich nicht kommen, weil ich arbeiten muss.</b> — Unfortunately I cannot come because I have to work.</li>
+    <li><b>Leider habe ich am Samstag keine Zeit.</b> — Unfortunately I have no time on Saturday.</li>
+    <li><b>Es tut mir sehr leid.</b> — I am very sorry.</li>
+  </ul>
+  <h4>5 · Suggest a time or a meeting (asked in almost every task)</h4>
+  <ul>
+    <li><b>Wie wäre es am Samstag um 15 Uhr?</b> — How about Saturday at 3 pm?</li>
+    <li><b>Hast du am Sonntag Zeit?</b> (Haben Sie am Montag Zeit?) — Do you have time on Sunday?</li>
+    <li><b>Wir können uns am Bahnhof treffen.</b> — We can meet at the station.</li>
+  </ul>
+  <h4>6 · Give a tip</h4>
+  <ul>
+    <li><b>Du solltest eine Jacke mitnehmen.</b> (Sie sollten …) — You should bring a jacket.</li>
+    <li><b>Am besten kommst du im Mai.</b> — Best if you come in May.</li>
+    <li><b>Ich empfehle dir das Café am Markt.</b> (Ich empfehle Ihnen …) — I recommend the café at the market.</li>
+  </ul>
+  <h4>7 · Describe (weather, city, flat)</h4>
+  <ul>
+    <li><b>Im Dezember ist es kalt und es regnet oft.</b> — In December it is cold and it rains often.</li>
+    <li><b>Die Stadt ist groß, aber sehr schön.</b> — The city is big but very beautiful.</li>
+    <li><b>Meine Wohnung ist klein, aber hell.</b> — My flat is small but bright.</li>
+  </ul>
+  <h4>8 · Offer help / ask for help</h4>
+  <ul>
+    <li><b>Ich helfe dir gern.</b> (Ich helfe Ihnen gern.) — I am glad to help you.</li>
+    <li><b>Kannst du mir bitte helfen?</b> (Könnten Sie mir bitte helfen?) — Can you please help me?</li>
+    <li><b>Du kannst bei mir schlafen.</b> — You can sleep at my place.</li>
+  </ul>
+  <h4>9 · Ask something back (shows you are in a conversation)</h4>
+  <ul>
+    <li><b>Wann kommst du genau?</b> — When exactly are you coming?</li>
+    <li><b>Was möchtest du gern machen?</b> — What would you like to do?</li>
+    <li><b>Soll ich etwas mitbringen?</b> — Shall I bring something?</li>
+  </ul>
+  <h4>10 · Close</h4>
+  <ul>
+    <li><b>Ich freue mich auf deinen Besuch.</b> (Ich freue mich auf Ihre Antwort.) — I look forward to your visit.</li>
+    <li><b>Schreib mir bald!</b> — Write to me soon!</li>
+    <li><b>Bis bald!</b> — See you soon!</li>
+  </ul>
+  <div class="tip"><b>Connectors — six are enough:</b> <b>und · aber · weil · deshalb · dann · außerdem</b>. Start each Leitpunkt with a different one. "Ein weiterer Punkt ist, dass …" and "Darüber hinaus" are nice, but you do not need them.</div>
+  <div class="tip"><b>Three "shine" sentences — learn exactly these, they show B1:</b><br>
+    <b>Es wäre schön, wenn du kommen könntest.</b> — It would be nice if you could come. (Konjunktiv II)<br>
+    <b>Ich finde, dass Frankfurt eine schöne Stadt ist.</b> — I think that Frankfurt is a beautiful city. (dass-clause, verb at the end)<br>
+    <b>Wegen des Wetters solltest du eine Jacke mitnehmen.</b> — Because of the weather you should bring a jacket. (<a href="#genitiv">Genitiv</a>)</div>
+  <div class="esel"><span class="tag">The recipe</span>Greeting + comma → thank (1 sentence) → the 4 Leitpunkte, 1–2 kit sentences each, each starting with a different connector → close (1 sentence) → sign-off + name. That is 90–100 words, and every word is one you already know.</div>
+
+  <h4>4 easy model e-mails — written only with kit words</h4>
+  <p>Each one answers a received e-mail, exactly like the real task. Read the e-mail and the four points, write your own answer, then compare.</p>
+
+  <details class="fold"><summary>⭐ E1. Lisa will dich besuchen — A friend wants to visit you <span class="mini">du · the official telc pattern</span></summary><div>
+    <div class="tip"><b>You received:</b> <i>Hallo, ich möchte dich im Frühling besuchen! Wann passt es dir? Was können wir zusammen machen? Und wie ist das Wetter bei euch? Liebe Grüße, Lisa</i><br><b>Leitpunkte:</b> 1. wann die beste Zeit ist (when the best time is) · 2. was Sie zusammen machen wollen (what you want to do together) · 3. wie das Wetter ist und welche Kleidung sie mitnehmen soll (the weather and which clothes to bring) · 4. wo sie schlafen kann (where she can sleep).</div>
+    <div class="letter">
+      <p><b>Liebe Lisa,</b></p>
+      <p><b>vielen Dank für deine E-Mail. Ich habe mich sehr gefreut!</b> Natürlich kannst du mich besuchen.</p>
+      <p>Die beste Zeit ist im Mai, <b>weil</b> ich dann Urlaub habe. Im Mai ist das Wetter schön, <b>aber</b> es regnet manchmal. <b>Deshalb solltest du</b> eine Jacke und einen Regenschirm mitnehmen. Wir können zusammen die Altstadt besuchen und am Fluss spazieren gehen. <b>Außerdem</b> möchte ich mit dir ins Museum gehen. <b>Du kannst bei mir schlafen.</b> Ich habe ein Sofa im Wohnzimmer.</p>
+      <p><b>Es wäre schön, wenn du</b> zwei Wochen bleiben <b>könntest. Schreib mir bald,</b> wann du kommst.</p>
+      <p><b>Liebe Grüße</b><br>Sadman</p>
+    </div>
+    <p><i>Why full points: all 4 points, each with its own connector, thank-you first, one Konjunktiv II sentence, consistent du. 95 words, no word above A2.</i></p>
+  </div></details>
+
+  <details class="fold"><summary>⭐ E2. Pauls Geburtstag — Saying yes to a party invitation <span class="mini">du</span></summary><div>
+    <div class="tip"><b>You received:</b> <i>Hallo, am Samstag feiere ich meinen Geburtstag bei mir zu Hause. Kommst du? Ich brauche auch noch Hilfe. Viele Grüße, Paul</i><br><b>Leitpunkte:</b> 1. sich bedanken und zusagen (thank and say yes) · 2. sagen, wann Sie kommen können (say when you can come) · 3. fragen, was Sie mitbringen sollen (ask what to bring) · 4. Hilfe anbieten (offer help).</div>
+    <div class="letter">
+      <p><b>Lieber Paul,</b></p>
+      <p><b>vielen Dank für deine Einladung. Ich habe mich sehr gefreut!</b></p>
+      <p><b>Ich komme gern</b> zu deiner Party. Ich arbeite am Samstag bis 14 Uhr, <b>aber</b> danach habe ich Zeit. <b>Soll ich etwas mitbringen?</b> Ich kann einen Salat oder einen Kuchen machen. Sag mir einfach, was du brauchst. <b>Außerdem helfe ich dir gern.</b> Ich komme um 17 Uhr, <b>dann</b> machen wir zusammen das Wohnzimmer fertig. Hast du schon Musik? Ich habe gute Musik auf meinem Handy.</p>
+      <p><b>Ich freue mich auf</b> deine Party. <b>Bis Samstag!</b></p>
+      <p><b>Liebe Grüße</b><br>Sadman</p>
+    </div>
+    <p><i>Why full points: yes + time + question + offer, two questions back keep it a conversation, 87 words and every sentence is short.</i></p>
+  </div></details>
+
+  <details class="fold"><summary>⭐ E3. Abschlussfest bei Frau Weber — Accepting the course leader's invitation <span class="mini">Sie · semi-formal, telc's own example</span></summary><div>
+    <div class="tip"><b>You received:</b> <i>Liebe Kursteilnehmer, am Freitag machen wir ein Abschlussfest im Kursraum. Kommen Sie? Bringen Sie gern etwas zu essen mit. Ich brauche auch Hilfe. Viele Grüße, Sabine Weber</i><br><b>Leitpunkte:</b> 1. sich bedanken und zusagen (thank and say yes) · 2. sagen, was Sie mitbringen (say what you bring) · 3. Hilfe anbieten (offer help) · 4. eine Frage stellen (ask a question).</div>
+    <div class="letter">
+      <p><b>Liebe Frau Weber,</b></p>
+      <p><b>vielen Dank für Ihre E-Mail</b> und für die Einladung. <b>Ich komme sehr gern</b> zum Fest.</p>
+      <p>Ich bringe etwas zu essen mit, zum Beispiel einen Salat und Brot aus meinem Land. <b>Außerdem kann ich Ihnen gern helfen.</b> Ich kann am Freitag um 17 Uhr kommen und die Tische vorbereiten. Nach dem Fest helfe ich auch beim Aufräumen. Ich habe noch eine Frage: Wann beginnt das Fest genau? Und können wir unsere Familie mitbringen? Mein Bruder möchte den Kurs gern kennenlernen.</p>
+      <p><b>Ich freue mich auf</b> Freitag. Vielen Dank für den schönen Kurs!</p>
+      <p><b>Viele Grüße</b><br>Sadman Sakib</p>
+    </div>
+    <p><i>Why full points: "Liebe Frau Weber" + Sie/Ihnen throughout = correct semi-formal register; a concrete offer (time + what you do) and a real question. 97 words.</i></p>
+  </div></details>
+
+  <details class="fold"><summary>⭐ E4. Jonas zieht nach Frankfurt — A friend moves to your city <span class="mini">du</span></summary><div>
+    <div class="tip"><b>You received:</b> <i>Hallo, ich ziehe nächsten Monat nach Frankfurt! Kannst du mir beim Umzug helfen? Welcher Stadtteil ist gut? Und was muss ich vorher machen? Viele Grüße, Jonas</i><br><b>Leitpunkte:</b> 1. wann Sie helfen können (when you can help) · 2. welchen Stadtteil Sie empfehlen und warum (which district you recommend and why) · 3. was er vor dem Umzug machen soll (what he should do before the move) · 4. ein Vorschlag für das erste Wochenende (an idea for the first weekend).</div>
+    <div class="letter">
+      <p><b>Lieber Jonas,</b></p>
+      <p><b>danke für deine E-Mail. Das ist eine tolle Nachricht!</b> Ich freue mich, dass du bald in Frankfurt wohnst.</p>
+      <p><b>Natürlich helfe ich dir.</b> Am Samstag und am Sonntag habe ich Zeit, <b>und</b> ich habe auch ein Auto. <b>Ich empfehle dir</b> Bockenheim, <b>weil</b> es dort viele Cafés gibt und die Uni in der Nähe ist. Vor dem Umzug <b>solltest du</b> einen Termin beim Bürgeramt machen und das Internet für die Wohnung bestellen. Das dauert oft lange. Am ersten Wochenende können wir zusammen am Main grillen. <b>Dann</b> zeige ich dir die Stadt.</p>
+      <p><b>Schreib mir, wann</b> genau du kommst.</p>
+      <p><b>Viele Grüße</b><br>Sadman</p>
+    </div>
+    <p><i>Why full points: help + when, a recommendation with weil, two concrete tips, one plan — and a question at the end. 100 words.</i></p>
+  </div></details>
+</div>
+
 <div class="card">
   <h3>12 model letters — your training set</h3>
-  <p>These 12 letters cover every situation telc likes to test. In each one, the reusable skeleton phrases are in <b>bold</b> — copy those into any letter; only the details in between change. All letters are 90–120 words: exactly what you should write.</p>
+  <p>These 12 letters are the classic training set. Six of them (1, 2, 3, 4, 9, 10) are formal letters to a company or office — the old Zertifikat Deutsch style, which the current telc B1 rarely asks for. Train the <a href="#brief-easy">4 easy e-mails</a> first, then letters 5, 6, 7, 8, 11 and 12; read the formal six last, for the words. In each one, the reusable skeleton phrases are in <b>bold</b> — copy those into any letter; only the details in between change. All letters are 90–120 words: exactly what you should write.</p>
 
   <details class="fold"><summary>📝 1. Beschwerde: Deutschkurs — Complaint: German course (formal) <span class="mini">formal</span></summary><div>
     <div class="tip"><b>Situation:</b> You took a German course at a language school and were not happy. Write to the school.<br><b>Leitpunkte:</b> 1. Grund des Schreibens (why you are writing) · 2. Probleme im Kurs beschreiben (describe the problems) · 3. Sagen, warum Sie enttäuscht sind (say why you are disappointed) · 4. Geld zurück verlangen (ask for money back).</div>
@@ -12715,13 +12903,13 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
 </div>
 <script>
 (function(){
-  const openBtn = document.querySelector('[data-ask]'), panel = document.getElementById('askPanel');
-  if (!openBtn || !panel) return;
+  const panel = document.getElementById('askPanel');
+  if (!panel) return;
   const ctx = document.getElementById('askCtx'), ta = document.getElementById('askText');
   let where = '', sel = '';
   const heading = () => {
     let h = '';
-    document.querySelectorAll('main h2, main h3').forEach(x => { if (x.getBoundingClientRect().top < 140) h = x.textContent.replace(/\s+/g, ' ').trim(); });
+    document.querySelectorAll('main h2, main h3').forEach(x => { if (x.getBoundingClientRect().top < 140) { const c = x.cloneNode(true); c.querySelectorAll('.mini, .sec-tag').forEach(m => m.remove()); h = c.textContent.replace(/\s+/g, ' ').trim(); } });
     return h;
   };
   const build = () => {
@@ -12740,7 +12928,7 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
   };
   const hide = () => { panel.hidden = true; };
   const copy = () => { try { navigator.clipboard.writeText(build()); } catch (e) {} };
-  openBtn.addEventListener('click', show);
+  document.addEventListener('click', e => { if (e.target.closest && e.target.closest('[data-ask]')) show(); });
   panel.addEventListener('click', e => { if (e.target === panel || e.target.closest('[data-ask-close]')) hide(); });
   panel.querySelector('[data-ask-copy]').addEventListener('click', () => { copy(); hide(); });
   panel.querySelector('[data-ask-go]').addEventListener('click', () => {
@@ -12749,6 +12937,107 @@ Every theme below has a 🏋️ Fall-Training box, so you will see these three j
     hide();
   });
   document.addEventListener('keydown', e => { if (e.key === 'Escape' && !panel.hidden) hide(); });
+})();
+</script>
+<nav class="mbar" aria-label="Quick actions">
+  <button type="button" data-menu-open><span class="ic">☰</span>Menu</button>
+  <button type="button" data-search-open><span class="ic">🔎</span>Search</button>
+  <button type="button" data-ask><span class="ic">💬</span>Ask</button>
+  <button type="button" data-top><span class="ic">↑</span>Top</button>
+</nav>
+<div class="menu" id="menuPanel" hidden>
+  <div class="menu-panel" role="dialog" aria-label="Guide map">
+    <div class="menu-top"><b>Guide map</b><button type="button" class="gs-close" data-menu-close aria-label="Close">✕</button></div>
+    <div class="menu-list" id="menuList"></div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+<script>
+(function(){
+  const $1 = (s, r) => (r || document).querySelector(s), $a = (s, r) => Array.from((r || document).querySelectorAll(s));
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const clean = el => { const c = el.cloneNode(true); $a('.mini, .sec-tag, .case, kbd', c).forEach(x => x.remove()); return c.textContent.replace(/\s+/g, ' ').trim(); };
+  const top = el => el.getBoundingClientRect().top + window.scrollY;
+  const sections = $a('main section.section').filter(s => $1('h2', s));
+  const curSection = () => { const y = window.scrollY + 130; let cur = sections[0]; sections.forEach(s => { if (top(s) <= y) cur = s; }); return cur; };
+
+  const list = $1('#menuList'), menu = $1('#menuPanel');
+  const build = () => {
+    sections.forEach((s, i) => {
+      const d = document.createElement('details'); d.dataset.sec = s.id;
+      const sum = document.createElement('summary');
+      sum.innerHTML = '<span class="n">' + (i + 1) + '</span><span>' + esc(clean($1('h2', s))) + '</span><a class="go" href="#' + s.id + '">open</a>';
+      d.appendChild(sum);
+      $a('.card > h3, details.lesson > summary', s).forEach((h, k) => {
+        const host = h.closest('.card, details.lesson');
+        if (!host.id) host.id = s.id + '-c' + (k + 1);
+        const a = document.createElement('a'); a.className = 'item'; a.href = '#' + host.id; a.textContent = clean(h);
+        d.appendChild(a);
+      });
+      list.appendChild(d);
+    });
+  };
+  const openMenu = () => {
+    if (!list.children.length) build();
+    const cur = curSection(), y = window.scrollY + 130;
+    $a('details', list).forEach(d => { const on = d.dataset.sec === cur.id; d.classList.toggle('cur', on); d.open = on; });
+    $a('a.item', list).forEach(a => a.classList.remove('cur'));
+    let card = null; $a('.card, details.lesson', cur).forEach(c => { if (c.id && top(c) <= y) card = c; });
+    if (card) { const a = $1('a.item[href="#' + card.id + '"]', list); if (a) a.classList.add('cur'); }
+    menu.hidden = false;
+    const c = $1('details.cur', list); if (c) c.scrollIntoView({ block: 'start' });
+  };
+  const closeMenu = () => { menu.hidden = true; };
+  $a('[data-menu-open]').forEach(b => b.addEventListener('click', openMenu));
+  menu.addEventListener('click', e => { if (e.target === menu || e.target.closest('[data-menu-close]') || e.target.closest('a')) closeMenu(); });
+  $a('[data-search-open]').forEach(b => b.addEventListener('click', () => { const s = $1('header [data-open-search]'); if (s) s.click(); }));
+  $a('[data-top]').forEach(b => b.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' })));
+  document.addEventListener('keydown', e => { if (e.key === 'Escape' && !menu.hidden) closeMenu(); });
+
+  const KEY = 'b1-pos';
+  const anchorNow = () => { const y = window.scrollY + 130; let el = null; $a('main section.section, main .card[id], main details.lesson[id]').forEach(c => { if (top(c) <= y) el = c; }); return el; };
+  let st; window.addEventListener('scroll', () => { clearTimeout(st); st = setTimeout(() => {
+    const el = anchorNow(); if (!el) return;
+    try { localStorage.setItem(KEY, JSON.stringify({ id: el.id, d: Math.round(window.scrollY - top(el)), sec: curSection().id })); } catch (e) {}
+  }, 300); }, { passive: true });
+  const toast = $1('#toast');
+  const showToast = (html, ms) => { toast.innerHTML = html; toast.hidden = false; clearTimeout(toast._t); toast._t = setTimeout(() => { toast.hidden = true; }, ms || 6000); };
+  toast.addEventListener('click', e => { if (e.target.closest('[data-toast-top]')) { document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, 0); document.documentElement.style.scrollBehavior = ''; toast.hidden = true; } });
+  if (!location.hash) {
+    let pos = null; try { pos = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch (e) {}
+    const el = pos && pos.id ? document.getElementById(pos.id) : null;
+    if (el && window.scrollY < 50) {
+      let settled = false;
+      ['wheel', 'touchstart', 'keydown'].forEach(ev => window.addEventListener(ev, () => { settled = true; }, { once: true, passive: true }));
+      const go = () => { if (settled) return; document.documentElement.style.scrollBehavior = 'auto'; window.scrollTo(0, Math.max(0, top(el) + (pos.d || 0))); document.documentElement.style.scrollBehavior = ''; };
+      const sec = document.getElementById(pos.sec);
+      if (top(el) > 600) {
+        requestAnimationFrame(go); [400, 1500, 3000].forEach(ms => setTimeout(go, ms));
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => setTimeout(go, 50));
+        window.addEventListener('load', () => setTimeout(go, 100));
+        showToast('Continued where you left off' + (sec ? ': <b>' + esc(clean($1('h2', sec)).slice(0, 36)) + '</b>' : '') + ' <button type="button" data-toast-top>Start at top</button>', 7000);
+      }
+    }
+  }
+
+  const wraps = $a('.tbl-scroll');
+  const fit = () => wraps.forEach(w => {
+    if (!w.clientWidth) return;
+    const can = w.scrollWidth > w.clientWidth + 4;
+    w.classList.toggle('can-scroll', can);
+    if (!can) { w.classList.remove('stickyfirst'); return; }
+    const first = $1('tbody td:first-child, thead th:first-child', w);
+    w.classList.toggle('stickyfirst', !!first && first.getBoundingClientRect().width <= w.clientWidth * 0.42);
+  });
+  wraps.forEach(w => w.addEventListener('scroll', () => w.classList.toggle('at-end', w.scrollLeft + w.clientWidth >= w.scrollWidth - 2), { passive: true }));
+  fit();
+  let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(fit, 150); });
+  document.addEventListener('toggle', e => { if (e.target.matches && e.target.matches('details')) setTimeout(fit, 30); }, true);
+  window.addEventListener('load', () => setTimeout(fit, 500));
+
+  if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+  }
 })();
 </script>
 </body>
